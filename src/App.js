@@ -21,6 +21,22 @@ const filteredExpenses = useMemo(() => {
   );
 }, [expenses, searchTerm]);
 
+ // Event handlers
+ const handleAddExpense = (newExpense) => {
+  setExpenses(prev => [
+    ...prev,
+    {
+      ...newExpense,
+      id: Date.now(),
+      amount: parseFloat(newExpense.amount)
+    }
+  ]);
+};
+
+const handleDeleteExpense = (id) => {
+  setExpenses(prev => prev.filter(expense => expense.id !== id));
+};
+
 
 
 
