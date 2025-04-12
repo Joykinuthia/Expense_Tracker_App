@@ -43,6 +43,23 @@ return (
       <h1>Expense Tracker</h1>
     </header>
 
+    <main className="app-main">
+        <ExpenseForm onSubmit={handleAddExpense} />
+        
+        <div className="expense-controls">
+          <SearchBar 
+            searchTerm={searchTerm} 
+            onSearchChange={setSearchTerm} 
+          />
+        </div>
+
+        <ExpenseTable 
+          expenses={filteredExpenses} 
+          onDelete={handleDeleteExpense}
+        />
+      </main>
+        
+
 
 
 
