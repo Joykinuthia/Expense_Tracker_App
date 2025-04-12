@@ -11,6 +11,9 @@ const [expenses, setExpenses] = useState([
   { id: 4, description: 'Savings', amount: 50000, category: 'Investments' }
 ]);
 const [searchTerm, setSearchTerm] = useState('');
+const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+
+
 
 // Derived state with useMemo for performance
 const filteredExpenses = useMemo(() => {
@@ -66,16 +69,6 @@ return (
       </footer>
     </div>
   );
-}
-        
-
-
-
-
-
-
-
- 
 }
 
 export default App
