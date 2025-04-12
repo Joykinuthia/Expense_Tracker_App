@@ -5,12 +5,14 @@ function ExpenseForm({ onSubmit }) {
       description: '',
       amount: '',
       category: 'Utilities'
+    });
 
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-      };
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
+     
       const handleSubmit = (e) => {
         e.preventDefault();
         if (!formData.description || !formData.amount) return;
