@@ -21,7 +21,7 @@ const filteredExpenses = useMemo(() => {
   );
 }, [expenses, searchTerm]);
 
- // Event handlers
+ // Event handling
  const handleAddExpense = (newExpense) => {
   setExpenses(prev => [
     ...prev,
@@ -37,17 +37,19 @@ const handleDeleteExpense = (id) => {
   setExpenses(prev => prev.filter(expense => expense.id !== id));
 };
 
+return (
+  <div className="app-container">
+    <header className="app-header">
+      <h1>Expense Tracker</h1>
+    </header>
 
 
 
 
 
 
-  return (
-    <div>
-      
-    </div>
-  )
+
+ 
 }
 
 export default App
