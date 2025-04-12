@@ -41,6 +41,15 @@ const deleteExpense = (id) => {
   return 0;
 });
 
+// Request sorting
+const requestSort = (key) => {
+  let direction = 'asc';
+  if (sortConfig.key === key && sortConfig.direction === 'asc') {
+    direction = 'desc';
+  }
+  setSortConfig({ key, direction });
+};
+
 
 
 
