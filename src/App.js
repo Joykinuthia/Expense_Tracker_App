@@ -29,6 +29,18 @@ const deleteExpense = (id) => {
   expense.category.toLowerCase().includes(searchTerm.toLowerCase())
 );
 
+ // Sorting expenses
+ const sortedExpenses = [...filteredExpenses].sort((a, b) => {
+  if (!sortConfig.key) return 0;
+  if (a[sortConfig.key] < b[sortConfig.key]) {
+    return sortConfig.direction === 'asc' ? -1 : 1;
+  }
+  if (a[sortConfig.key] > b[sortConfig.key]) {
+    return sortConfig.direction === 'asc' ? 1 : -1;
+  }
+  return 0;
+});
+
 
 
 
