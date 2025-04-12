@@ -1,71 +1,42 @@
 import './App.css';
 
-import React, { useState } from 'react'
+import { useState } from 'react';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseTable from './components/ExpenseTable';
 import SearchBar from './components/SearchBar';
+import './App.css';
 
 function App() {
-// State management
-const [expenses, setExpenses] = useState([
-  { id: 1, description: 'Shopping', amount: 15000, category: 'Utilities' },
-  { id: 2, description: 'Fuel', amount: 10000, category: 'Transport' },
-  { id: 3, description: 'Rent', amount: 30000, category: 'Essentials' },
-  { id: 4, description: 'Savings', amount: 50000, category: 'Investments' }
-]);
-const [searchTerm, setSearchTerm] = useState('');
-const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+  const [expenses, setExpenses] = useState([
+    { id: 1, category: 'Utilities', description: 'Electricity Bill', amount: 1000, date: '2023-03-19' },
+    { id: 2, category: 'Transport', description: 'Fuel', amount: 1500, date: '2023-03-16' },
+    { id: 3, category: 'Essentials', description: 'Rent', amount: 2500, date: '2023-03-14' },
+    { id: 4, category: 'Investment', description: 'Savings', amount: 5000, date: '2023-03-10' }
+  ]);
 
- // Adding new expense
- const addExpense = (newExpense) => {
-  setExpenses([...expenses, { ...newExpense, id: Date.now() }]);
-};
+  const [searchTerm, setSearchTerm] = useState('');
 
-// Deleting expense
-const deleteExpense = (id) => {
-  setExpenses(expenses.filter(expense => expense.id !== id));
-};
+  const addExpense = (newExpense) => {
+    setExpenses([...expenses, { ...newExpense, id: Date.now() }]);
+  };
 
- // Filtering expenses
- const filteredExpenses = expenses.filter(expense =>
-  expense.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  expense.category.toLowerCase().includes(searchTerm.toLowerCase())
-);
+  const deleteExpense = (id) => {
+    setExpenses(expenses.filter(expense => expense.id !== id));
+  };
 
- // Sorting expenses
- const sortedExpenses = [...filteredExpenses].sort((a, b) => {
-  if (!sortConfig.key) return 0;
-  if (a[sortConfig.key] < b[sortConfig.key]) {
-    return sortConfig.direction === 'asc' ? -1 : 1;
-  }
-  if (a[sortConfig.key] > b[sortConfig.key]) {
-    return sortConfig.direction === 'asc' ? 1 : -1;
-  }
-  return 0;
-});
+  const filteredExpenses = expenses.filter(expense =>
+    expense.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    expense.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-// Request sorting
-const requestSort = (key) => {
-  let direction = 'asc';
-  if (sortConfig.key === key && sortConfig.direction === 'asc') {
-    direction = 'desc';
-  }
-  setSortConfig({ key, direction });
-};
-
-return (
-  <div className="expense-tracker">
-    <h1>Expense Tracker</h1>
-    <ExpenseForm onSubmit={addExpense} />
-    <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-    <ExpenseTable 
-      expenses={sortedExpenses} 
-      onDelete={deleteExpense}
-      onSort={requestSort}
-      sortConfig={sortConfig}
-    />
-  </div>
-);
+  return (
+    <div className="app">
+      <h1>Expense Tracker</h1>
+      <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+      <ExpenseForm onSubmit={addExpense} />
+      <ExpenseTable expenses={filteredExpenses} onDelete={deleteExpense} />
+    </div>
+  );
 }
 
-export default App
+export default App;
