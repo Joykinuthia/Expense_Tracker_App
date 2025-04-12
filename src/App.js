@@ -58,6 +58,15 @@ return (
           onDelete={handleDeleteExpense}
         />
       </main>
+
+      <footer className="app-footer">
+        <p>Total Expenses: $
+          {expenses.reduce((sum, expense) => sum + expense.amount, 0).toFixed(2)}
+        </p>
+      </footer>
+    </div>
+  );
+}
         
 
 
