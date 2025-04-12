@@ -28,17 +28,23 @@ function ExpenseForm({ onSubmit }) {
             category: 'Food'
           });
         };
+
+        return (
+            <form onSubmit={handleSubmit} className="expense-form">
+              <div className="form-group">
+                <label>Description:</label>
+                <input
+                  type="text"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
       
 
 
      
       
 
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default ExpenseForm
+ export default ExpenseForm
