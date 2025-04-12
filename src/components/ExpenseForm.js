@@ -16,6 +16,20 @@ function ExpenseForm({ onSubmit }) {
         e.preventDefault();
         if (!formData.description || !formData.amount) return;
 
+        onSubmit({
+            description: formData.description,
+            amount: parseFloat(formData.amount),
+            category: formData.category
+          });
+
+          setFormData({
+            description: '',
+            amount: '',
+            category: 'Food'
+          });
+        };
+      
+
 
      
       
