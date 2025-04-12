@@ -12,11 +12,13 @@ function ExpenseForm({ onSubmit }) {
       setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-     
-      const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!formData.description || !formData.amount) return;
 
+
+     
+      
 
   return (
     <div>
