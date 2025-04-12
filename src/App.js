@@ -1,6 +1,9 @@
 import './App.css';
 
 import React, { useState } from 'react'
+import ExpenseForm from './components/ExpenseForm';
+import ExpenseTable from './components/ExpenseTable';
+import SearchBar from './components/SearchBar';
 
 function App() {
 // State management
@@ -50,56 +53,19 @@ const requestSort = (key) => {
   setSortConfig({ key, direction });
 };
 
-
-
-
-
-
- // Event handling
- const handleAddExpense = (newExpense) => {
-  setExpenses(prev => [
-    ...prev,
-    {
-      ...newExpense,
-      id: Date.now(),
-      amount: parseFloat(newExpense.amount)
-    }
-  ]);
-};
-
-const handleDeleteExpense = (id) => {
-  setExpenses(prev => prev.filter(expense => expense.id !== id));
-};
-
 return (
-  <div className="app-container">
-    <header className="app-header">
-      <h1>Expense Tracker</h1>
-    </header>
-
-    <main className="app-main">
-        <ExpenseForm onSubmit={handleAddExpense} />
-        
-        <div className="expense-controls">
-          <SearchBar 
-            searchTerm={searchTerm} 
-            onSearchChange={setSearchTerm} 
-          />
-        </div>
-
-        <ExpenseTable 
-          expenses={filteredExpenses} 
-          onDelete={handleDeleteExpense}
-        />
-      </main>
-
-      <footer className="app-footer">
-        <p>Total Expenses: $
-          {expenses.reduce((sum, expense) => sum + expense.amount, 0).toFixed(2)}
-        </p>
-      </footer>
-    </div>
-  );
+  <div className="expense-tracker">
+    <h1>Expense Tracker</h1>
+    <ExpenseForm onSubmit={addExpense} />
+    <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+    <ExpenseTable 
+      expenses={sortedExpenses} 
+      onDelete={deleteExpense}
+      onSort={requestSort}
+      sortConfig={sortConfig}
+    />
+  </div>
+);
 }
 
 export default App
