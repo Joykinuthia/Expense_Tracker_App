@@ -23,17 +23,16 @@ const deleteExpense = (id) => {
   setExpenses(expenses.filter(expense => expense.id !== id));
 };
 
+ // Filtering expenses
+ const filteredExpenses = expenses.filter(expense =>
+  expense.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  expense.category.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
 
 
-// Derived state with useMemo for performance
-const filteredExpenses = useMemo(() => {
-  const term = searchTerm.toLowerCase();
-  return expenses.filter(expense => 
-    expense.description.toLowerCase().includes(term) ||
-    expense.category.toLowerCase().includes(term)
-  );
-}, [expenses, searchTerm]);
+
+
 
  // Event handling
  const handleAddExpense = (newExpense) => {
