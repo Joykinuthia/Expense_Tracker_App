@@ -13,6 +13,17 @@ const [expenses, setExpenses] = useState([
 const [searchTerm, setSearchTerm] = useState('');
 const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
+ // Adding new expense
+ const addExpense = (newExpense) => {
+  setExpenses([...expenses, { ...newExpense, id: Date.now() }]);
+};
+
+// Deleting expense
+const deleteExpense = (id) => {
+  setExpenses(expenses.filter(expense => expense.id !== id));
+};
+
+
 
 
 // Derived state with useMemo for performance
